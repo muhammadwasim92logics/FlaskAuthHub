@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% block content %}
+    
+    <style>
+        .highlight{
+            background-color: yellow;
+        }
+    </style>
+    <header>
+        <h1>Data Base</h1>
+    </header>
+    <br>
+<!-- {% if error %}
+<ul>
+  <li class="popup success-popup" id="successPopup">{{error}}</li>
+</ul> -->
+  
+<!-- {% endif %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li class="popup success-popup" id="successPopup"  style="text-align: center; direction: unset;">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %} -->
+
+
+<!-- Success Messages -->
+{% for category, message in messages %}
+    {% if category == "success" %}
+        <div class="popup success-popup">
+            <p class="successMessage">{{ message }}</p>
+        </div>
+    {% endif %}
+{% endfor %}
+
+<!-- Error Messages -->
+{% for category, message in messages %}
+    {% if category == "error" %}
+        <div class="popup error-popup">
+            <p class="errorMessage">{{ message }}</p>
+        </div>
+    {% endif %}
+{% endfor %}
+
+
+<br>
+<br>
+</head>
+<body>
+
+
+<table>
+  <tr>
+    <td>
+      <div class="search_form">
+        <form action="/search" method="POST" style="width: 350px; margin: 40px auto; font-family: 'Arial', sans-serif; background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+          <h2>Search</h2>
+            <label for="" style="display: block; margin-bottom: 5px; ">Search</label>
+            <input type="email" class="inputfildes" placeholder="E-Mail" name="search" >
+            <br>
+            <input type="submit" class="inputfildes" value="Search" style="background-color: #4CAF50; width: 96%; color: white; padding: 10px 20px; border: none; border-radius: 10px; cursor: pointer; font-size: 16px;">
+        </form>
+      </div>
+    </td>
+    <td>
+      <div class="delete_form">
+        <form action="/delete" method="POST" style="width: 350px; margin: 40px auto; font-family: 'Arial', sans-serif; background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+          <h2>Delete</h2>
+          <label for="delete" style="font-size: 0.9em; font-weight: bold; margin-bottom: 5px; display: block; color: #333;">Enter E-Mail</label>
+          <input type="email" class="inputfildes"  name="email" placeholder="Enter E-mail" required>
+          <br>
+          <input type="submit" class="inputfildes"  value="DELETE" style="background-color: #4CAF50; width: 96%;; color: white; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: bold; transition: background-color 0.3s;">
+        </form>
+      </div>
+    </td>
+    <td>
+      <div class="update_form">
+        <form action="/update" method="POST" style="width: 350px; margin: 40px auto; font-family: 'Arial', sans-serif; background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+          <h2>Update</h2>
+          <label for="update" style="font-size: 0.9em; font-weight: bold; margin-bottom: 5px; display: block; color: #333;">Enter E-Mail</label>
+          <input type="email" class="inputfildes"  name="email" placeholder="Enter E-Mail" required>
+          <br>
+          <input type="submit" class="inputfildes" value="UpDate" style="background-color: #4CAF50; width: 96%; color: white; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: bold; transition: background-color 0.3s;">
+        </form>
+      </div>
+    </td>
+  </tr>
+</table>
+ <br>
+ {% if found %}
+    <h3>Searched Result Found:</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>E-Mail</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Date</th>
+                <th>Password</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ result.email }}</td>
+                <td>{{ result.fname }} {{ result.lname }}</td>
+                <td>{{ result.gander }}</td>
+                <td>{{ result.date }}</td>
+                <td>{{ result.password }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% else %}
+    <h3 style="text-align: center;">No results Found </h3>
+{% endif %}
+ 
+
+
+
+  <h1>Data Base</h1>
+  <!-- Table to display uploaded files -->
+  <table>
+    <tr>
+      <th scope="col">S.No</th>
+      <th scope="col">Date</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">E-Mail</th>
+      <th scope="col">Password</th>
+      <th scope="col">Gender</th>
+    </tr>
+    {% for data in users %}
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ data.date }}</td>
+        <td>{{ data.fname }}</td>
+        <td>{{ data.lname }}</td>
+        <td>{{ data.email }}</td>
+        <td>{{ data.password }}</td>
+        <td>{{ data.gander }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+    {% endblock content %}

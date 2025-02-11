@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <form action="/send" method="POST" style="width: 350px; margin: 40px auto; font-family: 'Arial', sans-serif; background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+        <div style="text-align: center; margin-bottom: 20px;">
+            <p style="font-size: 1.5em; font-weight: bold; color: #4CAF50;">Send Message</p>
+        </div>
+        <label for="email" style="font-size: 0.9em; font-weight: bold; margin-bottom: 5px; display: block; color: #333;">E-mail</label>
+        <input type="email" class="inputfildes" placeholder="Enter your email" name="email" required >
+        <br>
+        <label for="massage" style="font-size: 0.9em; font-weight: bold; margin-bottom: 5px; display: block; color: #333;">Message</label>
+        <textarea name="message" class="inputfildes" id="" required placeholder="Type your message" style="height: 100px"></textarea>
+        <br><br>
+        <input type="submit" value="Send Email" style="background-color: #4CAF50; width: 100%; color: white; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: bold; transition: background-color 0.3s;">
+    </form>    
+
+    {% endblock content %}

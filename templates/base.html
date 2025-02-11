@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
+    <link rel="stylesheet" href="/static/style.css">
+
+    <title>File Upload</title>
+</head>
+<body>
+    
+</head>
+<body>
+
+    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" style="width: 100px; height: 100x; padding-left: 70px;">
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <nav>
+            <ul>
+                <li><a href="/show">View Data</a></li>
+                <li><a href="/">Registration Page</a></li>
+                <!-- Log-in page with JavaScript function onClick -->
+                <li><a href="/login">Log-In Page</a></li>
+                <li><a href="/searchuser">Search</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/email">Contect Us</a></li>
+                <li><a href="/home">Home</a></li>
+                
+                <div class="dropdown">
+                    <button class="dropdown-btn">
+                        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="icon" alt="User Icon"> User
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/84/84380.png" class="icon"> Edit</a>
+                        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1345/1345823.png" class="icon"> Delete</a>
+                        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" class="icon"> Ban</a>
+                        <div class="divider"></div>
+                        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828415.png" class="icon"> Make Admin</a>
+                        <div class="divider"></div>
+                        <a href="/logout" class="logout"><img src="https://cdn-icons-png.flaticon.com/512/56/56805.png" class="icon"> Logout</a>
+                    </div>
+                </div>
+                
+                <script>
+                  function handleSelection() {
+                    const selectedValue = document.getElementById('options-dropdown').value;
+                    if (selectedValue) {
+                      window.location.href = selectedValue; // Redirect to the selected page
+                    }
+                  }
+                </script>
+                
+                
+            </ul>
+        </nav>
+    </div>
+    <br>
+    <!-- JavaScript -->
+    <script>
+        function a() {
+            alert("Click 'OK' Log Out");
+        }
+    </script>
+
+    <!-- Success Message -->
+<div class="popup success-popup" id="successPopup">
+    <p>{{ success }}</p>
+</div>
+
+<!-- Error Message -->
+<div class="popup error-popup" id="errorPopup">
+    <p>{{ error }}</p>
+</div>
+
+
+<script>
+
+window.onload = function() {
+    // Show all success messages
+    document.querySelectorAll(".success-popup").forEach((popup, index) => {
+        if (popup.innerText.trim() !== "") {
+            setTimeout(() => {
+                popup.style.display = "block";
+                setTimeout(() => popup.style.display = "none", 4000);
+            }, index * 500); // Stagger the popups if multiple exist
+        }
+    });
+
+    // Show all error messages
+    document.querySelectorAll(".error-popup").forEach((popup, index) => {
+        if (popup.innerText.trim() !== "") {
+            setTimeout(() => {
+                popup.style.display = "block";
+                setTimeout(() => popup.style.display = "none", 4000);
+            }, index * 500);
+        }
+    });
+};
+
+
+
+</script>
+
+
+
+
+{% block content %}
+<header>
+    <h1>Registration Page</h1>
+</header>
+<!-- Form for file upload -->
+<form action="/act" method="POST" style="width: 400px; margin: 40px auto; font-family: 'Arial', sans-serif; background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+    <div style="text-align: center; margin-bottom: 20px;">
+        <p style="font-size: 1.5em; font-weight: bold; color: #4CAF50;">Registration Form</p>
+    </div>
+    
+    <!-- First Name -->
+    <label for="fname" style="font-size: 1em; font-weight: bold; margin-bottom: 5px; display: block; color: #333;">First Name</label>
+    <input type="text" class="inputfildes" id="fname" name="fname" placeholder="First Name" required>
+    
+    <!-- Last Name -->
+    <label for="lname" style="font-size: 1em; font-weight: bold; margin-bottom: 5px; display: block; color: #333;">Last Name</label>
+    <input type="text" class="inputfildes" id="lname" name="lname" placeholder="Last Name" required >
+    
+    <!-- E-Mail -->
+    <label for="email" style="font-size: 1em; font-weight: bold; margin-bottom: 5px; display: block; color: #333;">E-Mail</label>
+    <input type="email" class="inputfildes" id="email" name="email" placeholder="E-Mail" required >
+    
+    <!-- Password -->
+    <label for="password"  style="font-size: 1em; font-weight: bold; margin-bottom: 5px; display: block; color: #333;">Password</label>
+    <input type="password" class="inputfildes" id="password" name="password" placeholder="Password" required >
+    
+     <!-- Re-Enter Password -->
+     <label for="password"  style="font-size: 1em; font-weight: bold; margin-bottom: 5px; display: block; color: #333;">RE-Enter Password</label>
+     <input type="password" class="inputfildes" id="re_password" name="re_password" placeholder="Re-Enter Password" required >
+     
+    <!-- Gender -->
+    <label style="font-size: 1em; font-weight: bold; margin-bottom: 5px; color: #333;">Gender</label>
+    <div style="margin-bottom: 20px;">
+        <input type="radio" name="gender" id="male" value="Male" style="margin-right: 8px;">
+        <label for="male" style="margin-right: 20px; font-size: 0.9em; color: #333;">Male</label>
+        <input type="radio" name="gender" id="female" value="Female" style="margin-right: 8px;">
+        <label for="female" style="font-size: 0.9em; color: #333;">Female</label>
+    </div>
+    
+    <!-- Submit Button -->
+    <input type="submit" value="Register" style="background-color: #4CAF50; width: 96%; color: white; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: bold; transition: background-color 0.3s;">
+    <br><br>
+    <input type="reset" value="Reset" style="background-color: #4CAF50; width: 96%; color: white; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: bold; transition: background-color 0.3s;">
+    <br>
+    <a href="/login">If already Register Log-In</a>
+    <!-- Hover Effect -->
+    <script>
+        const password = document.getElementById("password");
+        const re_password = document.getElementById("re_password");
+
+        function check_password() {
+            if (password.value !== re_password.value) {
+                alert("Passwords do not match!");
+                re_password.style.backgroundColor = "yellow";
+                // return false; // Prevent form submission or further action
+            } else {
+                // alert("Passwords match!");
+                return true; // Allow further action
+            }
+        }
+
+        // Example of using this function during form submission
+        document.querySelector("form").addEventListener("submit", (event) => {
+            if (!check_password()) {
+                event.preventDefault(); // Stop the form from submitting if passwords don't match
+            }
+        });
+
+        const button = document.querySelector('input[type="submit"]');
+        button.addEventListener('mouseover', () => button.style.backgroundColor = '#45a049');
+        button.addEventListener('mouseout', () => button.style.backgroundColor = '#4CAF50');
+    </script>
+</form>
+
+
+
+    <br>
+{% endblock content %}
+<footer>
+    <p style="text-align: center;"><i>Develped By: Muhammad Wasim</i></p>
+    <p style="text-align: center;"><i>Under: 92logics</i></p>
+</footer>
+</body>
+</html>

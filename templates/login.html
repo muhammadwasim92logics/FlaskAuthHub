@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+    {% block content %}
+        
+    <header>
+        <h1>Log-In</h1>
+    </header>
+    <!-- {% if error %}
+    <ul>
+        <li class="popup error-popup" id="errorPopup" style="text-align: center; direction: unset;">{{error}}</li>
+    </ul>
+    {% endif %} -->
+
+
+        <form action="/login" method="POST" style="width: 350px; margin: 40px auto; font-family: 'Arial', sans-serif; background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+                <div style="width: 100%; padding: 8px; margin-bottom: 15px; text-align: center; font-size: x-large;">
+            <p ><b>Log-In Page</b> </p>
+            </div>
+            <!-- E-Mail -->
+            <label for="email" style="font-size: 0.9em; font-weight: bold; margin-bottom: 5px; display: block; color: #333;">E-Mail</label>
+            <input type="email" id="email" name="email" placeholder="E-Mail" required style="width: 96%; padding: 8px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 10px;">
+            <!-- Password -->
+            <label for="password" style="font-size: 0.9em; font-weight: bold; margin-bottom: 5px; display: block; color: #333;">Password</label>
+            <input type="password" id="password" name="password" placeholder="Password" style="width: 96%; padding: 8px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 10px;">
+            <!-- Submit Button -->
+            <input type="submit" value="Log In" style="background-color: #4CAF50; width: 350px; color: white; padding: 10px 20px; border: none; border-radius: 10px; cursor: pointer; font-size: 16px;">
+            <a href="/">Don't have an Account</a>
+            <br>
+            <a href="#" onclick="redirectUser(event)">Forget Password</a>
+
+        </form>
+        
+        <script>
+            function redirectUser(event) {
+                event.preventDefault(); // Prevent default behavior
+                let email = document.getElementById('email').value; // Get email input
+                if (email) {
+                    window.location.href = `/verification_email/${email}`; // Redirect with email
+                } else {
+                    alert("Please enter your email first!"); // Alert if input is empty
+                }
+            }
+        </script>
+
+<!-- {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li class="popup success-popup" id="successPopup" style="text-align: center; direction: unset;"> {{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+-->
+{% endblock content %} 

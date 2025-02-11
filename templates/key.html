@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+<br>
+<header>
+<h1>Security Key For Access Data</h1>
+</header>
+<br>
+
+<!-- {% if error %}
+<ul>
+    <li class="popup error-popup" id="errorPopup" style="text-align: center; direction: unset;">{{error}}</li>
+</ul>   
+{% endif %} -->
+
+<form action="/show" method="POST" style="width: 350px; margin: 40px auto; font-family: 'Arial', sans-serif; background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);" >
+    <!-- Security Key for access DataBase  -->
+    <label for="s_key" style="font-size: 0.9em; font-weight: bold; margin-bottom: 5px; display: block; color: #333;">Security Key</label>
+    <input type="text" class="inputfildes" id="key" name="key" placeholder="Enter Key" required>
+    <br>
+    <input type="submit"  class="inputfildes" value="Submit" style="background-color: #4CAF50; width: 96%; color: white; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: bold; transition: background-color 0.3s;">
+</form>
+
+
+<!-- Success Message Popup -->
+<!-- <div class="popup success-popup" id="successPopup">
+  <p id="successMessage">
+      {% with messages = get_flashed_messages(category_filter=["success"]) %}
+          {% if messages %}
+              {{ messages[0] }}
+          {% endif %}
+      {% endwith %}
+  </p>
+</div> -->
+
+<!-- Error Message Popup -->
+<!-- <div class="popup error-popup" id="errorPopup">
+  <p id="errorMessage">
+      {% with messages = get_flashed_messages(category_filter=["error"]) %}
+          {% if messages %}
+              {{ messages[0] }}
+          {% endif %}
+      {% endwith %}
+  </p>
+</div> -->
+
+
+
+{% endblock content %}

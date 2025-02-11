@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<header>
+    <h1>Search Item</h1>
+</header>
+<br>
+<form action="/search" method="POST" style="width: 350px; margin: 40px auto; font-family: 'Arial', sans-serif; background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); ">
+    <p ><h3 style="text-align: center;">Search Results</h3> </p>
+    <br>
+    <label for=""  style="display: block; margin-bottom: 5px; ">Search</label>
+    <input type="email" class="inputfildes" placeholder="E-Mail" name="search" >
+    <br>
+    <input type="submit" class="inputfildes" value="Search" style="background-color: #4CAF50; width: 96%; color: white; padding: 10px 20px; border: none; border-radius: 10px; cursor: pointer; font-size: 16px;">
+</form>
+<br>
+<!-- Conditional Rendering -->
+{% if found %}
+<h3 style="text-align: center;">Searched Result Found</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>E-Mail</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Date</th>
+                <th>Password</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ result.email }}</td>
+                <td>{{ result.fname }} {{ result.lname }}</td>
+                <td>{{ result.gander }}</td>
+                <td>{{ result.date }}</td>
+                <td>{{ result.password }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- <ul>
+        <li><strong>Email:</strong> {{ result.email }}</li>
+        <li><strong>Name:</strong> {{ result.fname }} {{ result.lname }}</li>
+        <li><strong>Gender:</strong> {{ result.gander }}</li>
+        <li><strong>Date:</strong> {{ result.date }}</li>
+        <li><strong>Password:</strong> {{ result.password }}</li>
+
+    </ul> -->
+{% else %}
+    <h3 style="text-align: center;">No results Found </h3>
+{% endif %}
+
+{% endblock %}

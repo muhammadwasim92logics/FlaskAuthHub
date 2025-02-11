@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Flash message handling -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+    <div class="alert alert-{{ messages[0][0] }}" style="text-align: center; direction: unset;">
+        {{ messages[0][1] }}
+    </div>
+{% endif %}
+{% endwith %}
+
+<p>You have successfully logged out. Please <a href="{{ url_for('login') }}">login again</a>.</p>
+

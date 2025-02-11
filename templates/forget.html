@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+<header>
+    <h1>Forgat Password</h1>
+</header>
+
+{% if massage %}
+
+<ul>
+    <li class="popup success-popup" id="successPopup" style="text-align: center; direction: unset;">{{massage}}</li>
+</ul>
+    
+{% endif %}
+
+{% if error %}
+<ul>
+    <li class="popup error-popup" id="errorPopup" style="text-align: center; direction: unset;">{{error}}</li>
+</ul>
+    
+{% endif %}
+<!-- Form for file upload -->
+<form action="/f_password" method="POST" style="width: 350px; margin: 40px auto; font-family: 'Arial', sans-serif; background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+    <div style="text-align: center; margin-bottom: 20px;">
+        <p style="font-size: 1.5em; font-weight: bold; color: #4CAF50;">Forgat Password</p>
+    </div>
+    <!-- Password -->
+    <label for="password"  style="font-size: 0.9em; font-weight: bold; margin-bottom: 5px; display: block; color: #333;">Password</label>
+    <input type="password" class="inputfildes" id="password" name="password" placeholder="Password" required >
+    
+     <!-- Re-Enter Password -->
+     <label for="password"  style="font-size: 0.9em; font-weight: bold; margin-bottom: 5px; display: block; color: #333;">RE-Enter Password</label>
+     <input type="password" class="inputfildes" id="re_password" name="re_password" placeholder="Re-Enter Password" required >
+     
+    
+    <!-- Submit Button -->
+    <input type="submit" value="Update" style="background-color: #4CAF50; width: 100%; color: white; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: bold; transition: background-color 0.3s;">
+    <br><br>
+    <input type="reset" value="Reset" style="background-color: #4CAF50; width: 100%; color: white; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: bold; transition: background-color 0.3s;">
+    <!-- Hover Effect -->
+    <script>
+        const password = document.getElementById("password");
+        const re_password = document.getElementById("re_password");
+
+        function check_password() {
+            if (password.value !== re_password.value) {
+                alert("Passwords do not match!");
+                re_password.style.backgroundColor = "yellow";
+                // return false; // Prevent form submission or further action
+            } else {
+                // alert("Passwords match!");
+                return true; // Allow further action
+            }
+        }
+
+        // Example of using this function during form submission
+        document.querySelector("form").addEventListener("submit", (event) => {
+            if (!check_password()) {
+                event.preventDefault(); // Stop the form from submitting if passwords don't match
+            }
+        });
+
+        const button = document.querySelector('input[type="submit"]');
+        button.addEventListener('mouseover', () => button.style.backgroundColor = '#45a049');
+        button.addEventListener('mouseout', () => button.style.backgroundColor = '#4CAF50');
+    </script>
+</form>
+
+
+{% endblock content %}
+

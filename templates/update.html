@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- 
+{% if error %}
+    <ul>
+        <li style="text-align: center; direction: unset">{{ error }}</li>
+    </ul>
+{% endif %}
+
+{% if success %}
+    <ul>
+        <li style="text-align: center; direction: unset">{{ success }}</li>
+    </ul>
+{% endif %}  -->
+<!-- Success Message -->
+<!-- <div class="popup success-popup" id="successPopup">
+    <p>{{ success }}</p>
+</div> -->
+
+<!-- Error Message -->
+<!-- <div class="popup error-popup" id="errorPopup">
+    <p>{{ error }}</p>
+</div> -->
+
+
+<!-- <script>
+    window.onload = function() {
+        // Show success message if exists
+        var successPopup = document.getElementById("successPopup");
+        if (successPopup && successPopup.innerText.trim() !== "") {
+            successPopup.style.display = "block";
+            setTimeout(() => successPopup.style.display = "none", 4000);
+        }
+
+        // Show error message if exists
+        var errorPopup = document.getElementById("errorPopup");
+        if (errorPopup && errorPopup.innerText.trim() !== "") {
+            errorPopup.style.display = "block";
+            setTimeout(() => errorPopup.style.display = "none", 4000);
+        }
+    };
+</script> -->
+
+
+<header>
+    <h1>Update User</h1>
+</header>
+
+<form action="/update" method="POST" style="width: 350px; margin: 40px auto; font-family: 'Arial', sans-serif; background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+    <div style="text-align: center; margin-bottom: 20px;">
+        <p style="font-size: 1.5em; font-weight: bold; color: #4CAF50;">Update Registration Form</p>
+    </div>
+    
+    <!-- Hidden field for sno -->
+    <input type="hidden" name="no_for_update" value="{{ updated.sno if updated else '' }}">
+
+    <!-- First Name -->
+    <label for="fname" style="font-size: 0.9em; font-weight: bold; margin-bottom: 5px; display: block; color: #333;">First Name</label>
+    <input type="text" class="inputfildes" id="fname" name="fname" placeholder="First Name" value="{{ updated.fname if updated else '' }}" required>
+
+    <!-- Last Name -->
+    <label for="lname" style="font-size: 0.9em; font-weight: bold; margin-bottom: 5px; display: block; color: #333;">Last Name</label>
+    <input type="text" class="inputfildes" id="lname" name="lname" placeholder="Last Name" value="{{ updated.lname if updated else '' }}" required>
+
+    <!-- E-Mail -->
+    <label for="email" style="font-size: 0.9em; font-weight: bold; margin-bottom: 5px; display: block; color: #333;">E-Mail</label>
+    <input type="email" class="inputfildes" id="email" name="email" value="{{ updated.email if updated else '' }}" placeholder="E-Mail" required>
+
+    <!-- Password -->
+    <label for="password" style="font-size: 0.9em; font-weight: bold; margin-bottom: 5px; display: block; color: #333;">Password</label>
+    <input type="password" class="inputfildes" id="password" name="password" value="{{ updated.password if updated else '' }}" placeholder="Password" required>
+
+    <!-- Re-Enter Password -->
+    <label for="re_password" style="font-size: 0.9em; font-weight: bold; margin-bottom: 5px; display: block; color: #333;">RE-Enter Password</label>
+    <input type="password" class="inputfildes" id="re_password" name="re_password" value="" placeholder="Re-Enter Password" required>
+
+    <!-- Gender -->
+    <label style="font-size: 0.9em; font-weight: bold; margin-bottom: 5px; color: #333;">Gender</label>
+    <div style="margin-bottom: 20px;">
+        <input type="radio" name="gender" id="male" value="Male" style="margin-right: 8px;" {% if updated and updated.gander == 'Male' %}checked{% endif %}>
+        <label for="male" style="margin-right: 20px; font-size: 0.9em; color: #333;">Male</label>
+        <input type="radio" name="gender" id="female" value="Female" style="margin-right: 8px;" {% if updated and updated.gander == 'Female' %}checked{% endif %}>
+        <label for="female" style="font-size: 0.9em; color: #333;">Female</label>
+        
+    </div>
+
+    <!-- Submit Button -->
+    <input type="submit" onclick="check_password()" value="Update" style="background-color: #4CAF50; width: 100%; color: white; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: bold; transition: background-color 0.3s;">
+    <br><br>
+    <input type="reset" value="Reset" style="background-color: #4CAF50; width: 100%; color: white; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: bold; transition: background-color 0.3s;">
+</form>
+
+<!-- Hover Effect -->
+<script>
+    const password = document.getElementById("password");
+    const re_password = document.getElementById("re_password");
+
+    function check_password() {
+        if (password.value !== re_password.value) {
+            alert("Passwords do not match!");
+            re_password.style.backgroundColor = "yellow";
+            return false; // Prevent form submission or further action
+        } else {
+            return true; // Allow further action
+        }
+    }
+
+    document.querySelector("form").addEventListener("submit", (event) => {
+        if (!check_password()) {
+            event.preventDefault(); // Stop the form from submitting if passwords don't match
+        }
+    });
+
+    const button = document.querySelector('input[type="submit"]');
+    button.addEventListener('mouseover', () => button.style.backgroundColor = '#45a049');
+    button.addEventListener('mouseout', () => button.style.backgroundColor = '#4CAF50');
+</script>
+
+{% endblock content %}
